@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: upravljanje-deployment
+  name: upravljanjedogodkov-deployment
 spec:
   replicas: 1
   template:
