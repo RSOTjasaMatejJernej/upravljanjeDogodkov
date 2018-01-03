@@ -30,9 +30,9 @@ import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("upravljanjeDogodkov")
 @RequestScoped
-public class UpravljanjeProfilovResources {
+public class UpravljanjeDogodkovResources {
 
-    private Logger log = LogManager.getLogger(UpravljanjeProfilovResources.class.getName());
+    private Logger log = LogManager.getLogger(UpravljanjeDogodkovResources.class.getName());
     private Client httpClient;
 
     @Inject
@@ -47,29 +47,16 @@ public class UpravljanjeProfilovResources {
     @GET
     public Response getAllDogodeks() {
         return Response.ok("test").build();
-        /*try {
-            WebTarget wt = httpClient.target(baseUrl + "/v1/katalogProfilov/");
-            Invocation.Builder b = wt.request();
-            List<Dogodek> resp = b.get(new GenericType<Dogodek>(){});
-            Dogodek response = b.get(new GenericType<Dogodek>() {
-            });
-            System.out.println("response je: " + response.toString());
-
-            return Response.ok(response).build();
-        }
-        catch (Exception e) {
-            //log.error(e);
-            throw e;
-        }*/
+        
     }
 
     @GET
     @Path("{dogodekId}")
-    public Dogodek getDogodek(@PathParam("dogodekId") String profilId) {
-        log.debug(baseUrl + "/v1/katalogDogodkov?" + profilId);
+    public Dogodek getDogodek(@PathParam("dogodekId") String dogodekId) {
+        log.debug(baseUrl + "/v1/katalogDogodkov?" + dogodekId);
 
        try {
-           WebTarget wt = httpClient.target(baseUrl + "/v1/katalogDogodkov/" + profilId);
+           WebTarget wt = httpClient.target(baseUrl + "/v1/katalogDogodkov/" + dogodekId);
            Invocation.Builder b = wt.request();
            Dogodek response = b.get(new GenericType<Dogodek>() {
            });
@@ -81,7 +68,7 @@ public class UpravljanjeProfilovResources {
             throw e;
         }}/*
         try {
-            String response = sendGet(profilId);
+            String response = sendGet(dogodekId);
 
             return Response.ok(response).build();
         } catch (Exception e) {
@@ -90,11 +77,11 @@ public class UpravljanjeProfilovResources {
         }*/
 
 
-    private String sendGet(String profilId) throws Exception {
+    private String sendGet(String dogodekId) throws Exception {
 
 
 
-        URL obj = new URL(baseUrl+ "/v1/katalogDogodkov?" + profilId);
+        URL obj = new URL(baseUrl+ "/v1/katalogDogodkov?" + dogodekId);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
@@ -124,20 +111,7 @@ public class UpravljanjeProfilovResources {
 
     }
 
-    /*@GET
-    public Response getAllProfils() {
-        List<Dogodek> profils = Database.getDogodeks();
-        return Response.ok(profils).build();
-    }
 
-    @GET
-    @Path("{profilId}")
-    public Response getProfil(@PathParam("profilId") String profilId) {
-        Dogodek profil = Database.getProfil(profilId);
-        return profil != null
-                ? Response.ok(profil).build()
-                : Response.status(Response.Status.NOT_FOUND).build();
-    }*/
 
     @POST
     public Response addNewDogodek(Dogodek dogodek) {
@@ -147,8 +121,8 @@ public class UpravljanjeProfilovResources {
 
     @DELETE
     @Path("{dogodekId}")
-    public Response deleteProfil(@PathParam("dogodekId") String profilId) {
-        Database.deleteDogodek(profilId);
+    public Response deleteDogodek(@PathParam("dogodekId") String dogodekId) {
+        Database.deleteDogodek(dogodekId);
         return Response.ok(Response.Status.OK).build();
     }
 }
