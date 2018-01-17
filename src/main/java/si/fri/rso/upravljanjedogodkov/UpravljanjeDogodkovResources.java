@@ -77,7 +77,7 @@ public class UpravljanjeDogodkovResources {
         }*/
 
 
-    private String sendGet(String dogodekId) throws Exception {
+    /*private String sendGet(String dogodekId) throws Exception {
 
 
 
@@ -109,20 +109,36 @@ public class UpravljanjeDogodkovResources {
 
         return response.toString();
 
-    }
+    }*/
 
 
 
     @POST
+    public Dogodek updateDogodek(Dogodek dogodek) {
+        log.debug(baseUrl + "/v1/katalogDogodkov");
+
+        try {
+            WebTarget wt = httpClient.target(baseUrl + "/v1/katalogDogodkov");
+            Invocation.Builder b = wt.request();
+            Dogodek response = b.get(new GenericType<Dogodek>() {
+            });
+            System.out.println("response je: " + response.toString());
+
+            return response;
+        } catch (Exception e) {
+            //log.error(e);
+            throw e;
+        }}
+    /*@POST
     public Response addNewDogodek(Dogodek dogodek) {
         Database.addDogodek(dogodek);
         return Response.ok(dogodek).build();
-    }
+    }*/
 
-    @DELETE
+    /*@DELETE
     @Path("{dogodekId}")
     public Response deleteDogodek(@PathParam("dogodekId") String dogodekId) {
         Database.deleteDogodek(dogodekId);
         return Response.ok(Response.Status.OK).build();
-    }
+    }*/
 }

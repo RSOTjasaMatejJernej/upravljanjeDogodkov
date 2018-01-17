@@ -10,7 +10,7 @@ spec:
         app: upravljanjeDogodkov
     spec:
       containers:
-      - image: tjasaj/upravljanje-dogodkov:0.01
+      - image: tjasaj/upravljanje-dogodkov:0.02
         name: upravljanje-dogodkov
         env:
           - name: KUMULUZEE_DISCOVERY_CLUSTER
