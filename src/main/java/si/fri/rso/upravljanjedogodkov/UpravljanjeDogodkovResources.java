@@ -50,7 +50,7 @@ public class UpravljanjeDogodkovResources {
         
     }
 
-    @GET
+    /*@GET
     @Path("{dogodekId}")
     public Dogodek getDogodek(@PathParam("dogodekId") String dogodekId) {
         log.debug(baseUrl + "/v1/katalogDogodkov?" + dogodekId);
@@ -66,7 +66,7 @@ public class UpravljanjeDogodkovResources {
         } catch (Exception e) {
             //log.error(e);
             throw e;
-        }}/*
+        }}*//*
         try {
             String response = sendGet(dogodekId);
 
